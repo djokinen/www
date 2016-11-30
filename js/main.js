@@ -14,7 +14,7 @@ var _calculateAverage = function () {
 	var matureGrades = [];
 
 	for (i = 0; i < grades.length; i++) {
-		var grade = parseFloat( grades[i].replace("x", "").replace("X", "").trim());
+		var grade = parseFloat(grades[i].replace("x", "").replace("X", "").trim());
 		topGrades.push(grade);
 		if (grades[i].includes("x") || grades[i].includes("X")) {
 			matureGrades.push(grade);
@@ -46,5 +46,10 @@ var _calculateAverage = function () {
 	var avg = total / matureGrades.length;
 
 	$("#outputMature").text(avg.toFixed(2));
-	$("#outputMatureValues").text(matureGrades);
+	if (matureGrades.length > 0) {
+		$("#outputMatureValues").text(matureGrades);
+	}
+	else {
+		$("#outputMatureValues").text(Number.NaN);
+	}
 };
