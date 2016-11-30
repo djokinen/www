@@ -5,36 +5,41 @@
 	<meta charset="utf-8" />
 
 	<link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
 	<link rel="stylesheet" href="//code.getmdl.io/1.2.1/material.indigo-amber.min.css">
 	<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script defer src="js/main.js"></script>
 	<script defer src="//code.getmdl.io/1.2.1/material.min.js"></script>
-	<script>
-		// Shorthand for $( document ).ready()
-		$(function () {
-			console.log("ready!");
-			$("#button").click(function () {
-				alert("You clicked me");
-			});
-		});
-	</script>
 
 </head>
 <body>
+
 	<h1>Average Calculator</h1>
-	<p>Lorem Ipsum delores</p>
-	<!-- Simple Textfield -->
 	<form action="#">
-		<div class="mdl-textfield mdl-js-textfield">
-			<input class="mdl-textfield__input" type="text" id="sample1" required />
-			<label class="mdl-textfield__label" for="sample1">Text...</label>
+
+		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+			<input class="mdl-textfield__input" type="text" id="inputValues" required value="2,5,8,x23,x25,11,13">
+			<label class="mdl-textfield__label" for="inputValues">Comma or hyphen delimited list of values...</label>
 		</div>
 
 		<div>
 			<!-- Accent-colored raised button with ripple -->
 			<button id="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-				Button
+				Calculate
 			</button>
 		</div>
+
+		<h4>
+			<strong>Top Six:</strong>
+			<label id="outputTopSix"></label>
+		</h4>
+		
+
+		<h4>
+			<strong>Mature:</strong>
+			<label id="outputMature"></label>
+		</h4>
+		
 	</form>
 
 </body>
