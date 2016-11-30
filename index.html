@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 	<title>Average Calculator</title>
 	<meta charset="utf-8" />
-
 	<link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
 	<link rel="stylesheet" href="//code.getmdl.io/1.2.1/material.indigo-amber.min.css">
+	<link rel="stylesheet" href="css/main.css">
 	<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<script defer src="js/main.js"></script>
 	<script defer src="//code.getmdl.io/1.2.1/material.min.js"></script>
@@ -14,32 +14,73 @@
 </head>
 <body>
 
-	<h1>Average Calculator</h1>
 	<form action="#">
 
-		<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-			<input class="mdl-textfield__input" type="text" id="inputValues" required value="2,5,8,x23,x25,11,13">
-			<label class="mdl-textfield__label" for="inputValues">Comma or hyphen delimited list of values...</label>
+		<h3>Average Calculator</h3>
+		<div class="demo-card-wide mdl-card mdl-shadow--2dp left">
+			<div class="mdl-card__title">
+				<h2 class="mdl-card__title-text">Input</h2>
+			</div>
+			<div class="mdl-card__supporting-text">
+				<p>
+					Enter values separated by either a comma, hyphen, or a space.
+					Denote prerequisites with an x (<em>i.e. x78.3</em>).
+				</p>
+
+
+
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" id="inputValues" required />
+					<label class="mdl-textfield__label" for="inputValues">Grade Values</label>
+				</div>
+
+				<div>
+					<!-- Accent-colored raised button with ripple -->
+					<button id="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+						Calculate
+					</button>
+				</div>
+
+
+
+			</div>
 		</div>
 
-		<div>
-			<!-- Accent-colored raised button with ripple -->
-			<button id="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-				Calculate
-			</button>
+		<div class="left">
+
+			<div class="mdl-card__title">
+				<h2 class="mdl-card__title-text">Ouput</h2>
+			</div>
+			<div class="mdl-card__supporting-text">
+
+				<strong>Top Six</strong>
+				<ul>
+					<li>
+						<strong>Avg: </strong>
+						<label id="outputTopSix">-</label>
+					</li>
+					<li>
+						<strong>Values: </strong>
+						<label id="outputTopSixValues">-</label>
+					</li>
+				</ul>
+
+				<strong>Mature</strong>
+				<ul>
+					<li>
+						<strong>Avg: </strong>
+						<label id="outputMature">-</label>
+					</li>
+					<li>
+						<strong>Values: </strong>
+						<label id="outputMatureValues">-</label>
+					</li>
+				</ul>
+			</div>
+
+
 		</div>
 
-		<h4>
-			<strong>Top Six:</strong>
-			<label id="outputTopSix"></label>
-		</h4>
-		
-
-		<h4>
-			<strong>Mature:</strong>
-			<label id="outputMature"></label>
-		</h4>
-		
 	</form>
 
 </body>

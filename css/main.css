@@ -1,0 +1,16 @@
+﻿body {
+	padding: 0.5em;
+}
+
+.mdl-card__title {
+	padding-bottom: 0px;
+}
+
+.left {
+	float: left;
+	margin: .5em;
+}
+
+li label {
+	color: #d50000;
+}

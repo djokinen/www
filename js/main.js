@@ -1,11 +1,12 @@
 ﻿$(function () {
-	$("#button").click(function () {
+	$("#button").click(function (e) {
+		e.preventDefault();
 		_calculateAverage();
 	});
 });
 
 var _calculateAverage = function () {
-	var input = $("#inputValues").val();
+	var input = $("#inputValues").val().trim();
 	var grades = input.split(/[\s,-]+/);
 
 	// loop
@@ -35,7 +36,8 @@ var _calculateAverage = function () {
 	}
 	var avg = total / topGrades.length;
 
-	$("#outputTopSix").text(avg);
+	$("#outputTopSix").text(avg.toFixed(2));
+	$("#outputTopSixValues").text(topGrades);
 
 	total = 0;
 	for (var i = 0; i < matureGrades.length; i++) {
@@ -43,5 +45,6 @@ var _calculateAverage = function () {
 	}
 	var avg = total / matureGrades.length;
 
-	$("#outputMature").text(avg);
+	$("#outputMature").text(avg.toFixed(2));
+	$("#outputMatureValues").text(matureGrades);
 };
