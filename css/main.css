@@ -1,4 +1,7 @@
 ﻿body {
+	height:auto;
+	min-height:inherit;
+	width:auto;
 	padding: 0.5em;
 }
 
