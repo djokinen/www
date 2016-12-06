@@ -16,7 +16,16 @@ var _calculateAverage = function () {
 	for (i = 0; i < grades.length; i++) {
 		var grade = parseFloat(grades[i].replace("x", "").replace("X", "").trim());
 		topGrades.push(grade);
-		if (grades[i].includes("x") || grades[i].includes("X")) {
+
+		/* * * *
+		 * 
+		 * IE 11 does not suuport str.includes so i'm using str.indexOf
+		 * if (grades[i].includes("x") || grades[i].includes("X")) { 
+		 * 
+		 * * * */
+		if (grades[i].indexOf("x") >= 0 || grades[i].indexOf("x") >= 0) {
+
+			// if (grades[i].includes("x") || grades[i].includes("X")) {
 			matureGrades.push(grade);
 		}
 	}
