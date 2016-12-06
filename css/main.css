@@ -1,19 +1,35 @@
 ﻿body {
-	height:auto;
-	min-height:inherit;
-	width:auto;
+	height: auto;
+	min-height: inherit;
+	width: auto;
 	padding: 0.5em;
 }
 
 .mdl-card__title {
-	padding-bottom: 0px;
+	color: #FFD740;
+	/* padding-bottom: 0px; */
+}
+
+.mdl-card {
+	font-size: inherit;
 }
 
 .left {
+	/*border:solid #f80 1px;*/
 	float: left;
 	margin: .5em;
+	min-height: 23em;
+	min-width: 26em;
 }
 
 li label {
 	color: #d50000;
+}
+
+.demo-list-control {
+	width: 300px;
+}
+
+.demo-list-radio {
+	display: inline;
 }

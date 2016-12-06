@@ -18,17 +18,16 @@
 	<form action="#">
 
 		<h3>Average Calculator</h3>
-		<div class="demo-card-wide mdl-card mdl-shadow--2dp left">
-			<div class="mdl-card__title">
+		<div class="mdl-card mdl-shadow--2dp left">
+			<div class="mdl-card__title mdl-color--indigo">
 				<h2 class="mdl-card__title-text">Input</h2>
 			</div>
+
 			<div class="mdl-card__supporting-text">
 				<p>
-					Enter values separated by either a comma, hyphen, or a space.
+					Enter values separated by either a comma or space.
 					Denote prerequisites with an x (<em>i.e. x78.3</em>).
 				</p>
-
-
 
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 					<input class="mdl-textfield__input" type="text" id="inputValues" required />
@@ -41,15 +40,12 @@
 						Calculate
 					</button>
 				</div>
-
-
-
 			</div>
 		</div>
 
-		<div class="left">
+		<div class="mdl-card mdl-shadow--2dp left">
 
-			<div class="mdl-card__title">
+			<div class="mdl-card__title mdl-color--indigo">
 				<h2 class="mdl-card__title-text">Ouput</h2>
 			</div>
 			<div class="mdl-card__supporting-text">
@@ -79,6 +75,59 @@
 				</ul>
 			</div>
 
+
+		</div>
+
+		<div class="mdl-card mdl-shadow--2dp left">
+
+			<div class="mdl-card__title mdl-color--indigo">
+			</div>
+
+			<div class="mdl-card__supporting-text">
+
+				<!-- Deletable Contact Chip -->
+				<span class="mdl-chip mdl-chip--contact mdl-chip--deletable">
+					<span class="mdl-chip__contact mdl-color--indigo mdl-color-text--white">E</span>
+					<span class="mdl-chip__text">ENG4U - 53%</span>
+					<a href="#" class="mdl-chip__action"><i class="material-icons">cancel</i></a>
+				</span>
+
+				<!-- Deletable Contact Chip -->
+				<span class="mdl-chip mdl-chip--contact mdl-chip--deletable">
+					<span class="mdl-chip__contact mdl-color--indigo mdl-color-text--white">M</span>
+					<span class="mdl-chip__text">MHF4U - 78%</span>
+					<a href="#" class="mdl-chip__action"><i class="material-icons">cancel</i></a>
+				</span>
+
+				<!-- List with avatar and controls -->
+
+				<ul class="mdl-list">
+					<li class="mdl-list__item">
+						<span class="mdl-list__item-primary-content">
+							<i class="material-icons  mdl-list__item-avatar">mic</i>
+							MHF4U (78%)
+						</span>
+						<span class="mdl-list__item-secondary-action">
+							<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+								<input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" checked />
+							</label>
+						</span>
+					</li>
+					<li class="mdl-list__item">
+						<span class="mdl-list__item-primary-content">
+							<i class="material-icons  mdl-list__item-avatar">person</i>
+							ENG4U (53%)
+						</span>
+						<span class="mdl-list__item-secondary-action">
+							<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-2">
+								<input type="checkbox" id="list-checkbox-2" class="mdl-checkbox__input" checked />
+							</label>
+						</span>
+					</li>
+				</ul>
+
+
+			</div>
 
 		</div>
 
