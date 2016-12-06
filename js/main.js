@@ -24,8 +24,6 @@ var _calculateAverage = function () {
 		 * 
 		 * * * */
 		if (grades[i].indexOf("x") >= 0 || grades[i].indexOf("x") >= 0) {
-
-			// if (grades[i].includes("x") || grades[i].includes("X")) {
 			matureGrades.push(grade);
 		}
 	}
