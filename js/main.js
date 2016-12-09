@@ -6,96 +6,75 @@
 });
 
 var _calculateAverage = function () {
-	var gradePrefixes = ['x', 'e', 'm', 'b', 'p', 'c'];
+	var grade;
+	var gradeList = [];
+	var isPrerequisite;
+	var gradeTypes = ['x', 'e', 'm', 'b', 'p', 'c'];
 	var input = $("#inputValues").val().trim();
 	var grades = input.split(/[\s,-]+/);
 
-	// loop
-	var topGrades = [];
-	var matureGrades = [];
-	var grade; //var grade = {value:85.2, type:"m", required:true};
-	var gradeList = [];
 	for (i = 0; i < grades.length; i++) {
-		grade = null;
-		for (var j = 0; j < gradePrefixes.length; j++) {
-			if (grades[i].indexOf(gradePrefixes[j].toLowerCase()) >= 0 || grades[i].indexOf(gradePrefixes[j].toUpperCase()) >= 0) {
-				grade = {
-					value: parseFloat(grades[i].replace(gradePrefixes[j].toLowerCase(), "").replace(gradePrefixes[j].toUpperCase(), "").trim()),
-					type: gradePrefixes[j].toLowerCase(),
+		isPrerequisite = false;
+		// check if this grade is a prerequisite
+		for (var j = 0; j < gradeTypes.length; j++) {
+			if (grades[i].indexOf(gradeTypes[j].toLowerCase()) >= 0 || grades[i].indexOf(gradeTypes[j].toUpperCase()) >= 0) {
+				isPrerequisite = true;
+				var grade = {
+					value: parseFloat(grades[i].replace(gradeTypes[j].toLowerCase(), "").replace(gradeTypes[j].toUpperCase(), "").trim()),
+					type: gradeTypes[j].toLowerCase(),
 					required: true
 				};
-				matureGrades.push(grade);
+				break;
 			}
 		}
 
-		if (grade == null) {
-			grade = {
+		if (!isPrerequisite) {						
+			var grade = {
 				value: parseFloat(grades[i].trim()),
 				type: "a",
 				required: false
 			};
 		}
 
-		topGrades.push(grade.value);
 		gradeList.push(grade);
-
-		//// get the grade value of this item. remove the ammended letter if present
-		//var grade = parseFloat(
-		//	grades[i]
-		//	.replace(gradePrefixes[0].toLowerCase(), "").replace(gradePrefixes[0].toUpperCase(), "")
-		//	.replace(gradePrefixes[1].toLowerCase(), "").replace(gradePrefixes[1].toUpperCase(), "")
-		//	.replace(gradePrefixes[2].toLowerCase(), "").replace(gradePrefixes[2].toUpperCase(), "")
-		//	.replace(gradePrefixes[3].toLowerCase(), "").replace(gradePrefixes[3].toUpperCase(), "")
-		//	.replace(gradePrefixes[4].toLowerCase(), "").replace(gradePrefixes[4].toUpperCase(), "")
-		//	.replace(gradePrefixes[5].toLowerCase(), "").replace(gradePrefixes[5].toUpperCase(), "")
-		//	.trim());
-
-		//topGrades.push(grade);
-
-		/* * * *
-		 * 
-		 * IE 11 does not suuport str.includes so i'm using str.indexOf
-		 * if (grades[i].includes("x") || grades[i].includes("X")) { 
-		 * 
-		 * * * */
-		//for (var j = 0; j < gradePrefixes.length; j++) {
-		//	if (grades[i].indexOf(gradePrefixes[j].toLowerCase()) >= 0 || grades[i].indexOf(gradePrefixes[j].toUpperCase()) >= 0) {
-		//		matureGrades.push(grade);
-		//	}
-		//}
-
-		// if (grades[i].indexOf("x") >= 0 || grades[i].indexOf("x") >= 0) { matureGrades.push(grade); }
 	}
 
 	// sort in descending order
-	topGrades.sort(function (a, b) { return b.grade - a.grade });
-
-	matureGrades.sort(function (a, b) { return b.grade - a.grade });
-
-	// var avg = sum / elmt.length;
-	// get top 6 grades
-	topGrades = topGrades.slice(0, 6);
+	gradeList.sort(function (a, b) { return b.value - a.value });
 
 	var total = 0;
-	for (var i = 0; i < topGrades.length; i++) {
-		total += topGrades[i].grade;
+	// only use the first 6 grades to get the avg
+	var count = (gradeList.length > 6 ? 6 : gradeList.length);
+	for (var i = 0; i < count; i++) {
+		total += gradeList[i].value;
 	}
-	var avg = total / topGrades.length;
 
+	var avg = total / count;
 	$("#outputTopSix").text(avg.toFixed(2));
-	$("#outputTopSixValues").text(topGrades);
+	$("#outputTopSixValues").text(gradeList);
 
+	var count = 0
 	total = 0;
-	for (var i = 0; i < matureGrades.length; i++) {
-		total += matureGrades[i].grade;
+	for (var i = 0; i < gradeList.length; i++) {
+		console.log("required: " + gradeList[i].required);
+		if (gradeList[i].required) {
+			total += gradeList[i].value;
+			count++;
+		}
 	}
-	var avg = total / matureGrades.length;
+	avg = total / count;
 
 	$("#outputMature").text(avg.toFixed(2));
-	if (matureGrades.length > 0) {
-		$("#outputMatureValues").text(matureGrades);
+	if (count == 0) {
+		$("#outputMatureValues").text(gradeList);
 	}
 	else {
 		$("#outputMatureValues").text(Number.NaN);
 	}
+
+	/* * * * * *
+	 *
+	 *		Build output display of inputted values 
+	 *
+	 * * * * * */
 };
