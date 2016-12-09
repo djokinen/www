@@ -40,7 +40,7 @@ var _calculateAverage = function () {
 		gradeList.push(grade);
 	}
 
-	// sort in descending order
+	// sort in descending order by value
 	gradeList.sort(function (a, b) { return b.value - a.value });
 
 	var total = 0;
@@ -77,6 +77,9 @@ var _calculateAverage = function () {
 	 *		Build output display of inputted values 
 	 *
 	 * * * * * */
+
+	// sort in ascending order by type
+	gradeList.sort(function (a, b) { return a.type - b.type });
 
 	var prerequisites = $('ul.prerequisites');
 	prerequisites.empty();
