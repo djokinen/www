@@ -27,7 +27,7 @@
 			<div class="mdl-card__supporting-text">
 				<p>
 					Enter values separated by either a comma or space.
-					Denote prerequisites with an x (<em>i.e. x78.3</em>).
+					Denote prerequisites with an x, b, m, e, c, p (<em>i.e. x78.3</em>).
 				</p>
 
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -57,7 +57,7 @@
 						<strong>Avg: </strong>
 						<label id="outputTopSix">-</label>
 					</li>
-					<li>
+					<li style="display:none;">
 						<strong>Values: </strong>
 						<label id="outputTopSixValues">-</label>
 					</li>
@@ -69,17 +69,26 @@
 						<strong>Avg: </strong>
 						<label id="outputMature">-</label>
 					</li>
-					<li>
+					<li style="display:none;">
 						<strong>Values: </strong>
 						<label id="outputMatureValues">-</label>
 					</li>
 				</ul>
 			</div>
-
-
 		</div>
 
 		<div class="mdl-card mdl-shadow--2dp left">
+
+			<div class="mdl-card__title mdl-color--indigo">
+				<h2 class="mdl-card__title-text">Required</h2>
+			</div>
+
+			<div class="mdl-card__supporting-text">
+				<ul class="prerequisites"></ul>
+			</div>
+		</div>
+
+		<div style="display:none;" class="mdl-card mdl-shadow--2dp left">
 
 			<div class="mdl-card__title mdl-color--indigo">
 				<h2 class="mdl-card__title-text">Values (BETA)</h2>
@@ -110,8 +119,8 @@
 							MHF4U (78%)
 						</span>
 						<span class="mdl-list__item-secondary-action">
-							<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
-								<input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" checked />
+							<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-x1">
+								<input type="checkbox" id="list-checkbox-x1" class="mdl-checkbox__input" checked />
 							</label>
 						</span>
 					</li>
@@ -121,8 +130,8 @@
 							ENG4U (53%)
 						</span>
 						<span class="mdl-list__item-secondary-action">
-							<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-2">
-								<input type="checkbox" id="list-checkbox-2" class="mdl-checkbox__input" checked />
+							<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-x2">
+								<input type="checkbox" id="list-checkbox-x2" class="mdl-checkbox__input" checked />
 							</label>
 						</span>
 					</li>
@@ -133,61 +142,62 @@
 
 		</div>
 
+		<div style="display:none;" class="mdl-card mdl-shadow--2dp left">
+
+			<div class="mdl-card__title mdl-color--indigo">
+				<h2 class="mdl-card__title-text">Courses (BETA)</h2>
+			</div>
+
+			<div class="mdl-card__supporting-text">
+
+				<table>
+					<tr>
+						<td>ENG4U</td>
+						<td>English</td>
+					</tr>
+					<tr>
+						<td>MCV4U</td>
+						<td>Calculus and Vectors</td>
+					</tr>
+					<tr>
+						<td>MHF4U</td>
+						<td>Advanced Functions</td>
+					</tr>
+					<tr>
+						<td>MDM4U</td>
+						<td>Mathematics of Data Management</td>
+					</tr>
+					<tr>
+						<td>SPH4U</td>
+						<td>Physics</td>
+					</tr>
+					<tr>
+						<td>SCH4U</td>
+						<td>Chemistry</td>
+					</tr>
+					<tr>
+						<td>SBI4U</td>
+						<td>Biology</td>
+					</tr>
+					<tr>
+						<td>CGW4U</td>
+						<td>Canadian and World Issues</td>
+					</tr>
+					<tr>
+						<td>CLN4U</td>
+						<td>Canadian and International Law</td>
+					</tr>
+					<tr>
+						<td>BAT4M</td>
+						<td>Financial Accounting Principles</td>
+					</tr>
+				</table>
+
+			</div>
+		</div>
+
+
 	</form>
-
-	<div class="mdl-card mdl-shadow--2dp left">
-
-		<div class="mdl-card__title mdl-color--indigo">
-			<h2 class="mdl-card__title-text">Courses (BETA)</h2>
-		</div>
-
-		<div class="mdl-card__supporting-text">
-
-			<table>
-				<tr>
-					<td>ENG4U</td>
-					<td>English</td>
-				</tr>
-				<tr>
-					<td>MCV4U</td>
-					<td>Calculus and Vectors</td>
-				</tr>
-				<tr>
-					<td>MHF4U</td>
-					<td>Advanced Functions</td>
-				</tr>
-				<tr>
-					<td>MDM4U</td>
-					<td>Mathematics of Data Management</td>
-				</tr>
-				<tr>
-					<td>SPH4U</td>
-					<td>Physics</td>
-				</tr>
-				<tr>
-					<td>SCH4U</td>
-					<td>Chemistry</td>
-				</tr>
-				<tr>
-					<td>SBI4U</td>
-					<td>Biology</td>
-				</tr>
-				<tr>
-					<td>CGW4U</td>
-					<td>Canadian and World Issues</td>
-				</tr>
-				<tr>
-					<td>CLN4U</td>
-					<td>Canadian and International Law</td>
-				</tr>
-				<tr>
-					<td>BAT4M</td>
-					<td>Financial Accounting Principles</td>
-				</tr>
-			</table>
-
-		</div>
-	</div>
 
 </body>
 </html>

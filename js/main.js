@@ -1,5 +1,6 @@
 ﻿$(function () {
-	$("#button").click(function (e) {
+
+	$("#button").on('click', function (e) {
 		e.preventDefault();
 		_calculateAverage();
 	});
@@ -28,7 +29,7 @@ var _calculateAverage = function () {
 			}
 		}
 
-		if (!isPrerequisite) {						
+		if (!isPrerequisite) {
 			var grade = {
 				value: parseFloat(grades[i].trim()),
 				type: "a",
@@ -56,7 +57,6 @@ var _calculateAverage = function () {
 	var count = 0
 	total = 0;
 	for (var i = 0; i < gradeList.length; i++) {
-		console.log("required: " + gradeList[i].required);
 		if (gradeList[i].required) {
 			total += gradeList[i].value;
 			count++;
@@ -77,4 +77,54 @@ var _calculateAverage = function () {
 	 *		Build output display of inputted values 
 	 *
 	 * * * * * */
+
+	var prerequisites = $('ul.prerequisites');
+	prerequisites.empty();
+	$.each(gradeList, function (i) {
+		var text = "";
+		switch (gradeList[i].type) {
+			case "e":
+				text = "English";
+				break;
+			case "m":
+				text = "Mathematice";
+				break;
+			case "c":
+				text = "Chemistry";
+				break;
+			case "p":
+				text = "Physics";
+				break;
+			case "b":
+				text = "Biology";
+				break;
+			default:
+				text = "Unknown";
+				break;
+
+		}
+
+		if (gradeList[i].required) {
+			var li = $('<li/>')
+				 .addClass('mdl-list__item')
+				 .appendTo(prerequisites);
+			var spanText = $('<span/>')
+				 .addClass('mdl-list__item-primary-content')
+				 .text(text + ' (' + gradeList[i].value + '%)')
+				 .appendTo(li);
+			var spanCheck = $('<span/>')
+				 .addClass('mdl-list__item-secondary-action')
+				.appendTo(li);
+			var label = $('<label/>')
+				 .addClass('mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect')
+				.prop('for', 'list-checkbox-' + i)
+				.appendTo(spanCheck);
+			var input = $('<input/>')
+				.addClass('mdl-checkbox__input')
+				.prop('type', 'checkbox')
+				.prop('id', 'list-checkbox-' + i)
+				.prop('checked', 'checked')
+				.appendTo(label);
+		}
+	});
 };
