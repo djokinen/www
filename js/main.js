@@ -128,6 +128,7 @@ var _calculateAverage = function () {
 				.prop('id', 'list-checkbox-' + i)
 				.prop('checked', 'checked')
 				.appendTo(label);
+			componentHandler.upgradeDom();
 		}
 	});
 };
