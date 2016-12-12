@@ -4,6 +4,12 @@
 		e.preventDefault();
 		_calculateAverage();
 	});
+
+	$(':reset').click(function () {
+		$('ul.prerequisites').empty();
+		$('#outputTopSix').text("-");
+		$('#outputMature').text("-");		
+	});
 });
 
 var _calculateAverage = function () {
@@ -90,7 +96,7 @@ var _calculateAverage = function () {
 				text = "English";
 				break;
 			case "m":
-				text = "Mathematice";
+				text = "Mathematic";
 				break;
 			case "c":
 				text = "Chemistry";

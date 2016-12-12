@@ -35,11 +35,30 @@
 					<label class="mdl-textfield__label" for="inputValues">Grade Values</label>
 				</div>
 
+				<!-- Numeric Textfield with Floating Label -->
+				<div style="display:none;" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<!-- Number badge -->
+					<span class="mdl-badge" data-badge="6">
+						<label for="inputRange">Count of top values to use</label>
+					</span>
+
+					<!-- Number badge -->
+					<input id="inputRange" class="mdl-slider mdl-js-slider" type="range" min="0" max="12" value="6" step="1" />
+				</div>
+
 				<div>
 					<!-- Accent-colored raised button with ripple -->
+
 					<button id="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
 						Calculate
 					</button>
+
+					<!-- Primary-colored flat button -->
+					<button type="reset" class="mdl-button mdl-js-button mdl-button--primary">
+						Reset
+					</button>
+
+
 				</div>
 			</div>
 		</div>
