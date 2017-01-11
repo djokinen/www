@@ -4,9 +4,10 @@
 	width: auto;
 	padding: 0.5em;
 }
+
 table {
-	width:100%;
-	text-align:center;
+	width: 100%;
+	text-align: center;
 }
 
 .mdl-card__title {
@@ -16,6 +17,7 @@ table {
 
 .mdl-card {
 	font-size: inherit;
+	min-height: 22em;
 }
 
 .left {
