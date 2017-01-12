@@ -5,7 +5,7 @@
 		_calculateAverage($("#inputRange").val().trim());
 	});
 
-	$("#inputRange").change(function () {
+	$("#inputRange").on("change input", function () {
 		var b = $("#inputRange").val().trim();
 		$("#badgeRange").attr("data-badge", b);
 		_calculateAverage(b);
