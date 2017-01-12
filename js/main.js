@@ -2,17 +2,25 @@
 
 	$("#button").on('click', function (e) {
 		e.preventDefault();
-		_calculateAverage();
+		_calculateAverage($("#inputRange").val().trim());
+	});
+
+	$("#inputRange").change(function () {
+		var b = $("#inputRange").val().trim();
+		$("#badgeRange").attr("data-badge", b);
+		_calculateAverage(b);
 	});
 
 	$(':reset').click(function () {
 		$('ul.prerequisites').empty();
 		$('#outputTopSix').text("-");
-		$('#outputMature').text("-");		
+		$('#outputMature').text("-");
+		$('#badgeRange').attr("data-badge", 6);
+		$('#inputRange').val(6);
 	});
 });
 
-var _calculateAverage = function () {
+var _calculateAverage = function (topN) {
 	var grade;
 	var gradeList = [];
 	var isPrerequisite;
@@ -51,8 +59,10 @@ var _calculateAverage = function () {
 
 	var i;
 	var total = 0;
+	// var inputRange = $("#inputRange").val().trim();
 	// only use the first 6 grades to get the avg
-	var count = gradeList.length > 6 ? 6 : gradeList.length;
+	// var count = gradeList.length > 6 ? 6 : gradeList.length;
+	var count = gradeList.length > topN ? topN : gradeList.length;
 	for (i = 0; i < count; i++) {
 		total += gradeList[i].value;
 	}

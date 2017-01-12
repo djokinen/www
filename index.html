@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="//code.getmdl.io/1.2.1/material.indigo-amber.min.css">
 	<link rel="stylesheet" href="css/main.css">
 	<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 	<script defer src="js/main.js"></script>
 	<script defer src="//code.getmdl.io/1.2.1/material.min.js"></script>
 
@@ -35,17 +36,6 @@
 					<label class="mdl-textfield__label" for="inputValues">Grade Values</label>
 				</div>
 
-				<!-- Numeric Textfield with Floating Label -->
-				<div style="display:none;" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<!-- Number badge -->
-					<span class="mdl-badge" data-badge="6">
-						<label for="inputRange">Count of top values to use</label>
-					</span>
-
-					<!-- Number badge -->
-					<input id="inputRange" class="mdl-slider mdl-js-slider" type="range" min="0" max="12" value="6" step="1" />
-				</div>
-
 				<div>
 					<!-- Accent-colored raised button with ripple -->
 
@@ -70,7 +60,18 @@
 			</div>
 			<div class="mdl-card__supporting-text">
 
-				<strong>Top Six</strong>
+				<!-- Numeric Textfield with Floating Label -->
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<!-- Number badge -->
+					<span id="badgeRange" class="mdl-badge" data-badge="6">
+						<label for="inputRange">Count of top values to use</label>
+					</span>
+
+					<!-- Number badge -->
+					<input id="inputRange" class="mdl-slider mdl-js-slider" type="range" min="1" max="12" value="6" step="1" />
+				</div>
+
+				<strong>Top</strong>
 				<ul>
 					<li>
 						<strong>Avg: </strong>
@@ -215,7 +216,7 @@
 			</div>
 		</div>
 
-		<div class="mdl-card mdl-shadow--2dp left">
+		<div style="display:none;" class="mdl-card mdl-shadow--2dp left">
 
 			<div class="mdl-card__title mdl-color--indigo">
 				<h2 class="mdl-card__title-text">Grading System</h2>
@@ -316,8 +317,7 @@
 			</div>
 		</div>
 
-
-		<div class="mdl-card mdl-shadow--2dp left">
+		<div style="display:none;" class="mdl-card mdl-shadow--2dp left">
 
 			<div class="mdl-card__title mdl-color--indigo">
 				<h2 class="mdl-card__title-text">Grading System</h2>
@@ -348,6 +348,7 @@
 
 			</div>
 		</div>
+
 	</form>
 
 </body>
