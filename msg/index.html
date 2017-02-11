@@ -10,58 +10,92 @@
 	<script>
 		$(document).ready(function () {
 			$('table').DataTable({
-				"pageLength": 5000
-			});
-
-			$('table').on('draw.dt', function () {
-				_occurrences();
+				"pageLength": 200
+			}).on('draw.dt', function () {
+				_getOccurrences();
 			});
 		});
 
-		var _occurrences = function () {
-
+		var _getOccurrences = function () {
+			var count = 0;
 			$('#results').empty();
 
-			// here we will store counters for each number
-			var occurencies = {};
+			// here we will store counters for each code
+			var occurences = {};
 
 			// iterate each cell
-			$('table#tab td').each(function () {
+			$('table#tab tbody tr').each(function () {
 
-				// get number in cell
-				var number = $(this).html();
+				// console.log("\ntd1: " + $(this).children('td:first').text());
+				// var matchCount = parseInt($(this).children('td:first').text());
 
-				// if that number was counted already then exit
-				if (number in occurencies) { return; }
+				// $('#tbl_dynamic_call_dates > tbody  > tr').not(":first").  [....]
 
-				// get occurence count for that number
-				var count = $('table#tab td:contains(' + number + ')').length;
+				$(this).children("td").not(":first").each(function () {
+					// console.log("\nval: " + $(this).text());
 
-				// and store it
-				occurencies[number] = count;
+					// get code in cell
+					var code = $(this).html();
+					if (code.length) {
 
+						// if that code was counted already then exit
+						if (code in occurences) { return; }
+
+						// get occurence count for that code
+						var count = parseInt($('table#tab td:contains(' + code + ')').length);
+
+						// find rows with this code in it
+						// add the occurrence count  in all the rows
+						// add them together to get the match count
+						var matchCount = 0;
+						var rows = $("table tr:contains(" + code + ")").each(function () {
+							matchCount = matchCount + parseInt($(this).children("td:first").html());
+							// console.log("mc: " + matchCount);
+						});
+
+						/// matchCount = parseInt($("table tr:contains(" + code + ")").children("td:first").html());
+						// console.log("mc: " + matchCount);
+
+
+						// and store it
+						occurences[code] = parseInt(matchCount);
+						// console.log("Code: " + code + " Count: " + count + " Matches: " + matchCount);
+					}
+				});
 			});
 
-			// for each found number
-			for (var number in occurencies) {
+
+			// sort in descending order by value
+			// occurences.sort(function (a, b) { return b.count - a.count; });
+
+			// var list = { "you": 100, "me": 75, "foo": 116, "bar": 15 };
+			// keysSorted = Object.values(occurences).sort(function (a, b) { return occurences[b] - occurences[a] })
+
+
+			// for each found code
+			var result = "";
+			for (var code in occurences) {
 
 				// get stored count
-				var count = occurencies[number];
+				var count = occurences[code];
 
 				// print into #results div
-				$('#results').append(number + '(' + count + '), ');
+				// $('#results').append(code + '(' + count + '), ');
+				result += code + '(' + count + '), ';
 			}
+			$('#results').html(result.trim().replace(/(^,)|(,$)/g, "")); // = var trim =  result.replace(/(^,)|(,$)/g, "")
 		};
 
 	</script>
 
 	<style>
+
 		#results {
-			min-height:5em;
+			min-height: 5em;
 			border: 1px solid #f80;
-			background-color:#eee;
+			background-color: #eee;
 			margin: 1em 0;
-			padding:.5em;
+			padding: .5em;
 		}
 	</style>
 </head>
