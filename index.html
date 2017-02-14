@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="//code.getmdl.io/1.2.1/material.indigo-amber.min.css">
 	<link rel="stylesheet" href="css/main.css">
 	<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 	<script defer src="js/main.js"></script>
 	<script defer src="//code.getmdl.io/1.2.1/material.min.js"></script>
 
@@ -17,6 +18,7 @@
 
 	<form action="#">
 
+		<!-- <h3><a href="http://www.edu.gov.on.ca/eng/document/curricul/secondary/descript/descri9e.pdf" target="_blank">Average Calculator</a></h3> -->
 		<h3>Average Calculator</h3>
 		<div class="mdl-card mdl-shadow--2dp left">
 			<div class="mdl-card__title mdl-color--indigo">
@@ -26,7 +28,7 @@
 			<div class="mdl-card__supporting-text">
 				<p>
 					Enter values separated by either a comma or space.
-					Denote prerequisites with an x (<em>i.e. x78.3</em>).
+					Denote prerequisites with an x, b, m, e, c, p (<em>i.e. x78.3</em>).
 				</p>
 
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -36,9 +38,16 @@
 
 				<div>
 					<!-- Accent-colored raised button with ripple -->
+
 					<button id="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
 						Calculate
 					</button>
+
+					<!-- Primary-colored flat button -->
+					<button type="reset" class="mdl-button mdl-js-button mdl-button--primary">
+						Reset
+					</button>
+
 				</div>
 			</div>
 		</div>
@@ -50,13 +59,24 @@
 			</div>
 			<div class="mdl-card__supporting-text">
 
-				<strong>Top Six</strong>
+				<!-- Numeric Textfield with Floating Label -->
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<!-- Number badge -->
+					<span id="badgeRange" class="mdl-badge" data-badge="6">
+						<label for="inputRange">Count of grade values to use</label>
+					</span>
+
+					<!-- Number badge -->
+					<input id="inputRange" class="mdl-slider mdl-js-slider" type="range" min="1" max="12" value="6" step="1" />
+				</div>
+
+				<strong>Top</strong>
 				<ul>
 					<li>
 						<strong>Avg: </strong>
 						<label id="outputTopSix">-</label>
 					</li>
-					<li>
+					<li style="display:none;">
 						<strong>Values: </strong>
 						<label id="outputTopSixValues">-</label>
 					</li>
@@ -68,17 +88,26 @@
 						<strong>Avg: </strong>
 						<label id="outputMature">-</label>
 					</li>
-					<li>
+					<li style="display:none;">
 						<strong>Values: </strong>
 						<label id="outputMatureValues">-</label>
 					</li>
 				</ul>
 			</div>
-
-
 		</div>
 
 		<div class="mdl-card mdl-shadow--2dp left">
+
+			<div class="mdl-card__title mdl-color--indigo">
+				<h2 class="mdl-card__title-text">Required</h2>
+			</div>
+
+			<div class="mdl-card__supporting-text">
+				<ul class="prerequisites"></ul>
+			</div>
+		</div>
+
+		<div style="display:none;" class="mdl-card mdl-shadow--2dp left">
 
 			<div class="mdl-card__title mdl-color--indigo">
 				<h2 class="mdl-card__title-text">Values (BETA)</h2>
@@ -109,8 +138,8 @@
 							MHF4U (78%)
 						</span>
 						<span class="mdl-list__item-secondary-action">
-							<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
-								<input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" checked />
+							<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-x1">
+								<input type="checkbox" id="list-checkbox-x1" class="mdl-checkbox__input" checked />
 							</label>
 						</span>
 					</li>
@@ -120,8 +149,8 @@
 							ENG4U (53%)
 						</span>
 						<span class="mdl-list__item-secondary-action">
-							<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-2">
-								<input type="checkbox" id="list-checkbox-2" class="mdl-checkbox__input" checked />
+							<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-x2">
+								<input type="checkbox" id="list-checkbox-x2" class="mdl-checkbox__input" checked />
 							</label>
 						</span>
 					</li>
@@ -130,6 +159,193 @@
 
 			</div>
 
+		</div>
+
+		<div style="display:none;" class="mdl-card mdl-shadow--2dp left">
+
+			<div class="mdl-card__title mdl-color--indigo">
+				<h2 class="mdl-card__title-text">Courses (BETA)</h2>
+			</div>
+
+			<div class="mdl-card__supporting-text">
+
+				<table>
+					<tr>
+						<td>ENG4U</td>
+						<td>English</td>
+					</tr>
+					<tr>
+						<td>MCV4U</td>
+						<td>Calculus and Vectors</td>
+					</tr>
+					<tr>
+						<td>MHF4U</td>
+						<td>Advanced Functions</td>
+					</tr>
+					<tr>
+						<td>MDM4U</td>
+						<td>Mathematics of Data Management</td>
+					</tr>
+					<tr>
+						<td>SPH4U</td>
+						<td>Physics</td>
+					</tr>
+					<tr>
+						<td>SCH4U</td>
+						<td>Chemistry</td>
+					</tr>
+					<tr>
+						<td>SBI4U</td>
+						<td>Biology</td>
+					</tr>
+					<tr>
+						<td>CGW4U</td>
+						<td>Canadian and World Issues</td>
+					</tr>
+					<tr>
+						<td>CLN4U</td>
+						<td>Canadian and International Law</td>
+					</tr>
+					<tr>
+						<td>BAT4M</td>
+						<td>Financial Accounting Principles</td>
+					</tr>
+				</table>
+
+			</div>
+		</div>
+
+		<div style="display:none;" class="mdl-card mdl-shadow--2dp left">
+
+			<div class="mdl-card__title mdl-color--indigo">
+				<h2 class="mdl-card__title-text">Grading System</h2>
+			</div>
+
+			<div class="mdl-card__supporting-text">
+
+				<table>
+					<thead>
+						<tr>
+							<th>Grade</th>
+							<th>Point</th>
+							<th>Percent</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>A+</td>
+							<td>4.33</td>
+							<td>95 - 100</td>
+							<td>Distinguished</td>
+						</tr>
+						<tr>
+							<td>A</td>
+							<td>4.00</td>
+							<td>90 - 94</td>
+							<td>Outstanding</td>
+						</tr>
+						<tr>
+							<td>A-</td>
+							<td>3.67</td>
+							<td>85 - 89</td>
+							<td>Excellent</td>
+						</tr>
+						<tr>
+							<td>B+</td>
+							<td>3.33</td>
+							<td>80 - 84</td>
+							<td>Very Good</td>
+						</tr>
+						<tr>
+							<td>B</td>
+							<td>3.00</td>
+							<td>75 - 79</td>
+							<td>Commendable</td>
+						</tr>
+						<tr>
+							<td>B-</td>
+							<td>2.67</td>
+							<td>70 -74</td>
+							<td>Good</td>
+						</tr>
+						<tr>
+							<td>C+</td>
+							<td>2.33</td>
+							<td>65 - 69</td>
+							<td>Competent</td>
+						</tr>
+						<tr>
+							<td>C</td>
+							<td>2.00</td>
+							<td>60 - 64</td>
+							<td>Satisfactory</td>
+						</tr>
+						<tr>
+							<td>C-</td>
+							<td>1.67</td>
+							<td>55 - 59</td>
+							<td>Pass</td>
+						</tr>
+						<tr>
+							<td>D</td>
+							<td>1.00</td>
+							<td>50 - 54</td>
+							<td>Marginal Pass</td>
+						</tr>
+						<tr>
+							<td>F</td>
+							<td>0</td>
+							<td>0 - 49</td>
+							<td>Fail</td>
+						</tr>
+						<tr>
+							<td>P/F</td>
+							<td>0</td>
+							<td>grade neutral</td>
+							<td>Pass/Fail</td>
+						</tr>
+						<tr>
+							<td>W</td>
+							<td>0</td>
+							<td>grade neutral</td>
+							<td>Withdrawal</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div style="display:none;" class="mdl-card mdl-shadow--2dp left">
+
+			<div class="mdl-card__title mdl-color--indigo">
+				<h2 class="mdl-card__title-text">Grading System</h2>
+			</div>
+
+			<div class="mdl-card__supporting-text">
+				<p>Wilfred Laurier</p>
+				<table>
+					<thead>
+						<tr><th>Grade</th><th>Point</th><th>Range</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>a+</td><td>12</td><td>90-100</td></tr>
+						<tr><td>a</td><td>11</td><td>85-89</td></tr>
+						<tr><td>a-</td><td>10</td><td>80-84</td></tr>
+						<tr><td>b+</td><td>09</td><td>77-79</td></tr>
+						<tr><td>b</td><td>08</td><td>73-76</td></tr>
+						<tr><td>b-</td><td>07</td><td>70-72</td></tr>
+						<tr><td>c+</td><td>06</td><td>67-69</td></tr>
+						<tr><td>c</td><td>05</td><td>63-66</td></tr>
+						<tr><td>c-</td><td>04</td><td>60-62</td></tr>
+						<tr><td>d+</td><td>03</td><td>57-59</td></tr>
+						<tr><td>d</td><td>02</td><td>53-56</td></tr>
+						<tr><td>d-</td><td>01</td><td>50-52</td></tr>
+						<tr><td>f</td><td>00</td><td>00-49</td></tr>
+					</tbody>
+				</table>
+
+			</div>
 		</div>
 
 	</form>
