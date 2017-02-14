@@ -10,7 +10,7 @@
 	<script>
 		$(document).ready(function () {
 			$('table').DataTable({
-				"pageLength": 100,
+				"pageLength": 25,
 				"order": [[0, "desc"]]
 			}).on('draw.dt', function () {
 				_getOccurrences();
@@ -66,10 +66,10 @@
 
 			// for each found code
 			var result = "";
+			var maxCount = parseFloat(occurences[0].count);
 			for (var occurence in occurences) {
-
 				// output to page
-				result += occurences[occurence].code + '(<em>' + occurences[occurence].count + '</em>), ';
+				result += occurences[occurence].code + '(<em>' +  (occurences[occurence].count / maxCount * 100).toFixed(1)  + '%</em>), ';
 			}
 			// trim trailing comma
 			$('#results').html(result.trim().replace(/(^,)|(,$)/g, ""));
