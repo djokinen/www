@@ -69,7 +69,7 @@
 			var maxCount = parseFloat(occurences[0].count);
 			for (var occurence in occurences) {
 				// output to page
-				result += occurences[occurence].code + '(<em>' +  (occurences[occurence].count / maxCount * 100).toFixed(1)  + '%</em>), ';
+				result += occurences[occurence].code + '(<em>' +  (occurences[occurence].count / maxCount * 100).toFixed(0)  + '%</em>), ';
 			}
 			// trim trailing comma
 			$('#results').html(result.trim().replace(/(^,)|(,$)/g, ""));
