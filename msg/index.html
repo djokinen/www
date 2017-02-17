@@ -9,25 +9,36 @@
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
 	<script>
 		$(document).ready(function () {
+			var topN = 20;
 			$('table').DataTable({
 				"pageLength": 25,
 				"order": [[0, "desc"]]
 			}).on('draw.dt', function () {
-				_getOccurrences();
+				_getOccurrences(topN);
 			});
 
-			_getOccurrences();
+			_getOccurrences(topN);
 		});
 
-		var _getOccurrences = function () {
+		var _getOccurrences = function (topN) {
 			var count = 0;
+			var totalCount = 0;
 			$('#results').empty();
 
 			// here we will store counters for each code
 			var occurences = [];
 
 			// iterate each row
+			var sum = 0;
 			$('table#tab tbody tr').each(function () {
+
+				// totalCount = totalCount + matchCount;
+				// totalCount += parseInt(matchCount);
+				// console.log("x: " + sum);
+				totalCount += parseInt($(this).children("td:first").html());
+				// console.log("y: " + sum);
+				// console.log("code: " + code + " match: " + matchCount + " totoal: " + totalCount);
+
 
 				$(this).children("td").not(":first").each(function () {
 
@@ -62,14 +73,15 @@
 			occurences.sort(function (a, b) { return b.count - a.count; });
 
 			// get topN results
-			occurences = occurences.slice(0, 19);
+			occurences = occurences.slice(0, topN);
 
 			// for each found code
 			var result = "";
 			var maxCount = parseFloat(occurences[0].count);
 			for (var occurence in occurences) {
 				// output to page
-				result += occurences[occurence].code + '(<em>' +  (occurences[occurence].count / maxCount * 100).toFixed(0)  + '%</em>), ';
+				// result += occurences[occurence].code + '(<em>' +  (occurences[occurence].count / maxCount * 100).toFixed(0)  + '%</em>), ';
+				result += occurences[occurence].code + '(<em>' + (occurences[occurence].count / totalCount * 100).toFixed(0) + '%</em>), ';
 			}
 			// trim trailing comma
 			$('#results').html(result.trim().replace(/(^,)|(,$)/g, ""));
