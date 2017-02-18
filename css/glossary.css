@@ -1,0 +1,15 @@
+﻿body {
+	font-family: Courier New, Courier, monospace;
+}
+
+table#tab {
+	text-align: center;
+}
+
+#results {
+	min-height: 2em;
+	border: 1px solid #f80;
+	background-color: #eee;
+	margin: 1em 0;
+	padding: .5em;
+}
