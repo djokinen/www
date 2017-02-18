@@ -18,7 +18,8 @@
 			$('table').DataTable({
 				searchHighlight: true,
 				"pageLength": 25,
-				"order": [[0, "desc"]]
+				"order": [[0, "desc"]],
+				"columnDefs": [{ "searchable": false, "targets": 0 }]
 			}).on('draw.dt', function () {
 				_getOccurrences(topN);
 			});
