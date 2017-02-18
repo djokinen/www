@@ -7,16 +7,21 @@
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
 	<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/1.10.13/features/searchHighlight/dataTables.searchHighlight.css" />
+	<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.13/features/searchHighlight/dataTables.searchHighlight.min.js"></script>
+	<script type="text/javascript" src="//bartaz.github.io/sandbox.js/jquery.highlight.js"></script>
+
 	<script>
 		$(document).ready(function () {
 			var topN = 20;
 			$('table').DataTable({
+				searchHighlight: true,
 				"pageLength": 25,
 				"order": [[0, "desc"]]
 			}).on('draw.dt', function () {
 				_getOccurrences(topN);
 			});
-
 			_getOccurrences(topN);
 		});
 
