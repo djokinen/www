@@ -155,6 +155,7 @@ var _initGlossaryMsg = function (topN) {
 	$('table').DataTable({
 		"searchHighlight": true,
 		"pageLength": 25,
+		"className": 'mdl-data-table__cell--non-numeric',
 		"order": [[0, "desc"]],
 		"columnDefs": [{ "searchable": false, "targets": 0 }]
 	}).on('draw.dt', function () {
