@@ -4,111 +4,17 @@
 	<title>Glossary Codes</title>
 	<meta charset="utf-8" />
 
-	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+
 	<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-
-	
-	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/1.10.13/features/searchHighlight/dataTables.searchHighlight.css" />
-	<!--<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.13/features/searchHighlight/dataTables.searchHighlight.min.js"></script>-->
+	<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.13/features/searchHighlight/dataTables.searchHighlight.min.js"></script>
 	<script type="text/javascript" src="//bartaz.github.io/sandbox.js/jquery.highlight.js"></script>
-	
+	<script defer type="text/javascript" src="../js/main.js"></script>
 	<script>
 		$(document).ready(function () {
-			var topN = 20;
-			$('table').DataTable({
-				"searchHighlight": true,
-				"pageLength": 25,
-				"order": [[0, "desc"]]
-			}).on('draw.dt', function () {
-				_getOccurrences(topN);
-			});
-
-			_getOccurrences(topN);
+			_initGlossaryMsg(20);
 		});
-
-		var _getOccurrences = function (topN) {
-			var count = 0;
-			var totalCount = 0;
-			$('#results').empty();
-
-			// here we will store counters for each code
-			var occurences = [];
-
-			// iterate each row
-			var sum = 0;
-			$('table#tab tbody tr').each(function () {
-
-				// totalCount = totalCount + matchCount;
-				// totalCount += parseInt(matchCount);
-				// console.log("x: " + sum);
-				totalCount += parseInt($(this).children("td:first").html());
-				// console.log("y: " + sum);
-				// console.log("code: " + code + " match: " + matchCount + " totoal: " + totalCount);
-
-
-				$(this).children("td").not(":first").each(function () {
-
-					// get code in cell
-					var code = $(this).html();
-					if (code.length) {
-
-						// if that code was counted already then exit
-						if (occurences.find(n=> n.code === code)) { return; }
-
-						// get occurence count for that code
-						var count = parseInt($('table#tab td:contains(' + code + ')').length);
-
-						// find rows with this code in it
-						// add the occurrence count  in all the rows
-						// add them together to get the match count
-						var matchCount = 0;
-						var rows = $("table tr:contains(" + code + ")").each(function () {
-							matchCount = matchCount + parseInt($(this).children("td:first").html());
-						});
-
-						// and store it
-						occurences.push({
-							code: code,
-							count: parseInt(matchCount)
-						});
-					}
-				});
-			});
-
-			// sort in descending order by value
-			occurences.sort(function (a, b) { return b.count - a.count; });
-
-			// get topN results
-			occurences = occurences.slice(0, topN);
-
-			// for each found code
-			var result = "";
-			var maxCount = parseFloat(occurences[0].count);
-			for (var occurence in occurences) {
-				// output to page
-				// result += occurences[occurence].code + '(<em>' +  (occurences[occurence].count / maxCount * 100).toFixed(0)  + '%</em>), ';
-				result += occurences[occurence].code + '(<em>' + (occurences[occurence].count / totalCount * 100).toFixed(0) + '%</em>), ';
-			}
-			// trim trailing comma
-			$('#results').html(result.trim().replace(/(^,)|(,$)/g, ""));
-		};
-
 	</script>
-
-	<style>
-		body {
-			font-family: Courier New, Courier, monospace;
-		}
-
-		#results {
-			min-height: 2em;
-			border: 1px solid #f80;
-			background-color: #eee;
-			margin: 1em 0;
-			padding: .5em;
-		}
-	</style>
 </head>
 <body>
 
@@ -24535,3 +24441,6 @@
 
 </body>
 </html>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/1.10.13/features/searchHighlight/dataTables.searchHighlight.css" />
+<link rel="stylesheet" type="text/css" href="../css/glossary.css" />

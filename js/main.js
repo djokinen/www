@@ -149,3 +149,79 @@ var _calculateAverage = function (topN) {
 		}
 	});
 };
+
+var _initGlossaryMsg = function (topN) {
+
+	$('table').DataTable({
+		"searchHighlight": true,
+		"pageLength": 25,
+		"order": [[0, "desc"]],
+		"columnDefs": [{ "searchable": false, "targets": 0 }]
+	}).on('draw.dt', function () {
+		_getOccurrences(topN);
+	});
+	_getOccurrences(topN);
+};
+
+var _getOccurrences = function (topN) {
+	var count = 0;
+	var totalCount = 0;
+	$('#results').empty();
+
+	// here we will store counters for each code
+	var occurences = [];
+
+	// iterate each row
+	var sum = 0;
+	$('table#tab tbody tr').each(function () {
+
+		totalCount += parseInt($(this).children("td:first").text());
+
+		$(this).children("td").not(":first").each(function () {
+
+			// get code in cell
+			var code = $(this).text();
+
+			if (code.length) {
+
+				// if that code was counted already then exit
+				if (occurences.find(n=> n.code === code)) { return; }
+
+				// get occurence count for that code
+				var count = parseInt($('table#tab td:contains(' + code + ')').length);
+
+				// find rows with this code in it
+				// add the occurrence count  in all the rows
+				// add them together to get the match count
+				var matchCount = 0;
+				var rows = $("table tr:contains(" + code + ")").each(function () {
+					matchCount = matchCount + parseInt($(this).children("td:first").text());
+				});
+
+				// and store it
+				occurences.push({
+					code: code,
+					count: parseInt(matchCount)
+				});
+			}
+		});
+	});
+
+	if (occurences.length == 0) { return };
+
+	// sort in descending order by value
+	occurences.sort(function (a, b) { return b.count - a.count; });
+
+	// get topN results
+	occurences = occurences.slice(0, topN);
+
+	// for each found code
+	var result = "";
+	var maxCount = parseFloat(occurences[0].count);
+	for (var occurence in occurences) {
+		// output to page
+		result += occurences[occurence].code + '(<em>' + (occurences[occurence].count / totalCount * 100).toFixed(0) + '%</em>), ';
+	}
+	// trim trailing comma
+	$('#results').html(result.trim().replace(/(^,)|(,$)/g, ""));
+};
