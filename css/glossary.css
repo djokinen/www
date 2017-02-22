@@ -1,0 +1,22 @@
+﻿body {
+	font-family: Courier New, Courier, monospace;
+}
+
+table#tab {
+	text-align: center;
+}
+
+/* hide default search and paging controls */
+#tab_filter, 
+#tab_length {
+	display: none;
+}
+
+/* #results {
+	min-height: 2em;
+	border: 1px solid #f80;
+	background-color: #eee;
+	margin: 1em 0;
+	padding: .5em;
+}
+*/
