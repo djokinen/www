@@ -1,5 +1,4 @@
-﻿$(function () {
-
+﻿var _initCalculator = function () {
 	$("#button").on('click', function (e) {
 		e.preventDefault();
 		_calculateAverage($("#inputRange").val().trim());
@@ -18,7 +17,7 @@
 		$('#badgeRange').attr("data-badge", 6);
 		$('#inputRange').val(6);
 	});
-});
+};
 
 var _calculateAverage = function (topN) {
 	var grade;
@@ -151,6 +150,12 @@ var _calculateAverage = function (topN) {
 };
 
 var _initGlossaryMsg = function (topN) {
+
+	$('#search').on('keyup click', function () {
+		$('table').DataTable().search(
+			 $('#search').val()
+		).draw();
+	});
 
 	$('table').DataTable({
 		"searchHighlight": true,

@@ -6,6 +6,10 @@ table#tab {
 	text-align: center;
 }
 
+#tab_filter {
+	display:none;
+}
+
 /* #results {
 	min-height: 2em;
 	border: 1px solid #f80;
