@@ -6,8 +6,10 @@ table#tab {
 	text-align: center;
 }
 
-#tab_filter {
-	display:none;
+/* hide default search and paging controls */
+#tab_filter, 
+#tab_length {
+	display: none;
 }
 
 /* #results {
