@@ -1,5 +1,5 @@
 $(function () {
-	console("begin rest");
+	console.log("begin rest");
 	// Assign handlers immediately after making the request, and remember the jqxhr object for this request
 	// var jsonData = "http://localhost:60526/api/GlossaryMessageViews?ids=x868,x761&?callback=?"
 	var jqxhr = $.getJSON("http://localhost:60526/api/GlossaryMessageViews?ids=x868,x761&?callback=?", function (json) {
