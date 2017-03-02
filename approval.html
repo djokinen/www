@@ -10,9 +10,47 @@
 		});
 	</script>
 
+	<script>
+
+		function logResults(data) {
+			console.log( data);
+			// $('.greeting-id').append(data);
+			// $('.greeting-content').append(data.Name);
+			// console.log("x: " + data[0].Name);
+
+			// alert(msg.Name);
+			// console.log("y: " + msg[0].Name);
+		}
+
+		$(document).ready(function () {
+			$.ajax({
+				url: "http://localhost:60526/api/glossarymessageviews",
+				dataType: "jsonp",
+				jsonpCallback: logResults,
+				success: function (data) {
+					if (data.flag == true) {
+						alert(data.Name);
+					} else {
+						alert("not sucess");
+					}
+				}
+			});
+		});
+
+	</script>
+
 	<title>autoeval_nolij_query</title>
 </head>
 <body>
+
+	<fieldset>
+		<legend>json</legend>
+		<p class="greeting-id">The ID is </p>
+		<p class="greeting-content">The content is </p>
+	</fieldset>
+
+	<hr />
+
 	<table class="display">
 		<thead>
 			<tr>
@@ -253,5 +291,7 @@
 			</tr>
 		</tbody>
 	</table>
+
 </body>
+
 </html>
