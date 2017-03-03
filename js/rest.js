@@ -1,10 +1,17 @@
 $(function () {
-	console.log("begin rest");
-	// Assign handlers immediately after making the request, and remember the jqxhr object for this request
-	// var jsonData = "http://localhost:60526/api/GlossaryMessageViews?ids=x868,x761&?callback=?"
-	var jqxhr = $.getJSON("http://localhost:60526/api/GlossaryMessageViews?ids=x868,x761&?callback=?", function (json) {
+
+	console.log("begin");
+
+	// //var surl = "http://localhost:60526/api/GlossaryMessageViews?ids=x868&?callback=?";
+
+	var jqxhr = $.getJSON("data.json", function (json) {
 		console.log("start getJson");
-		// console.log("json: " + json);
+		console.log("json: " + json);
+		console.log("json[0]: " + json[0].Id);
+		console.log("json[0]: " + json[0].GlossaryMessageTypeName);
+		console.log("json[0]: " + json[0].GlossaryMessageTypeCategoryName);
+		console.log("json[0]: " + json[0].Description);
+		console.log("json[0]: " + json[0].Text);
 		// _standings(json.qsbl.standings);
 		// _schedule(json.qsbl.schedule);
 		// _schedule(json);
@@ -12,12 +19,11 @@ $(function () {
 	.done(function () { console.log("done"); })
 	.fail(function () { console.log("fail"); })
 	.always(function () { console.log("always"); });
-
-	// perform other work here ...
-
-	// Set another completion function for the request above
-	// jqxhr.complete(function () { console.log("complete"); });
 });
+
+function callback(retdata) {
+	console.log("callback: " + retdata);
+}
 
 function _standings(standings) {
 	var items = [];
