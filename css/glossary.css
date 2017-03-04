@@ -20,3 +20,8 @@ table#tab {
 	padding: .5em;
 }
 */
+
+.messages .subtitle {
+	color:#d50000;
+	font-size:smaller;
+}
