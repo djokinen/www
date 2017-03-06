@@ -18,6 +18,9 @@ table {
 .mdl-card {
 	font-size: inherit;
 	min-height: 22em;
+	width: calc(100% - 0.35em);
+	max-width: 30em;
+	min-width: 20em;
 }
 
 .left {
