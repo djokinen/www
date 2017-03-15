@@ -1,10 +1,14 @@
 $(function () {
 
+	// HELP: https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api
+
 	console.log("begin");
 
-	// //var surl = "http://localhost:60526/api/GlossaryMessageViews?ids=x868&?callback=?";
+	var surl = "http://localhost:60526/api/GlossaryMessageViews?ids=x868&?callback=?";
 
-	var jqxhr = $.getJSON("data.json", function (json) {
+	// var jqxhr = $.getJSON("data.json", function (json) {
+	var jqxhr = $.getJSON(surl, function (json) {
+
 		console.log("start getJson");
 		console.log("json: " + json);
 		console.log("json[0]: " + json[0].Id);

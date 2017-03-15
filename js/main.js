@@ -191,7 +191,7 @@ var _getOccurrences = function (topN) {
 			if (code.length) {
 
 				// if that code was counted already then exit
-				if (occurences.find(n=> n.code === code)) { return; }
+				if (occurences.find(n => n.code === code)) { return; }
 
 				// get occurence count for that code
 				var count = parseInt($('table#tab td:contains(' + code + ')').length);
