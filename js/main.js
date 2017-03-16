@@ -153,7 +153,7 @@ var _initGlossaryMsg = function (topN) {
 
 	$('#search').on('keyup click', function () {
 		$('table').DataTable().search(
-			 $('#search').val()
+			$('#search').val()
 		).draw();
 	});
 
@@ -213,7 +213,7 @@ var _getOccurrences = function (topN) {
 		});
 	});
 
-	if (occurences.length == 0) { return };
+	if (occurences.length === 0) { return };
 
 	// sort in descending order by value
 	occurences.sort(function (a, b) { return b.count - a.count; });
