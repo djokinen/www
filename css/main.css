@@ -10,6 +10,10 @@ table {
 	text-align: center;
 }
 
+label {
+	font-size: 16px;
+}
+
 .mdl-card__title {
 	color: #FFD740;
 	/* padding-bottom: 0px; */

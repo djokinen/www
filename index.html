@@ -62,38 +62,51 @@
 
 				<!-- Numeric Textfield with Floating Label -->
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<!-- Number badge -->
-					<span id="badgeRange" class="mdl-badge" data-badge="6">
-						<label for="inputRange">Count of grade values to use</label>
-					</span>
+
+					<p>
+						<label for="switchAll" class="mdl-switch mdl-js-switch mdl-js-ripple-effect">
+							<input type="checkbox" id="switchAll" class="mdl-switch__input">
+							<span class="mdl-switch__label">Override and use all grade values</span>
+						</label>
+					</p>
+
+					<p>
+						<!-- Number badge -->
+						<span id="badgeRange" class="mdl-badge" data-badge="6">
+							<label for="inputRange">Count of grade values to use</label>
+						</span>
+					</p>
+
 
 					<!-- Number badge -->
 					<input id="inputRange" class="mdl-slider mdl-js-slider" type="range" min="1" max="12" value="6" step="1" />
 				</div>
 
-				<strong>Top</strong>
-				<ul>
-					<li>
-						<strong>Avg: </strong>
-						<label id="outputTopSix">-</label>
-					</li>
-					<li style="display:none;">
-						<strong>Values: </strong>
-						<label id="outputTopSixValues">-</label>
-					</li>
-				</ul>
+				<div>
+					<strong>Top</strong>
+					<ul>
+						<li>
+							<strong>Avg: </strong>
+							<label id="outputTopSix">-</label>
+						</li>
+						<li style="display:none;">
+							<strong>Values: </strong>
+							<label id="outputTopSixValues">-</label>
+						</li>
+					</ul>
 
-				<strong>Mature</strong>
-				<ul>
-					<li>
-						<strong>Avg: </strong>
-						<label id="outputMature">-</label>
-					</li>
-					<li style="display:none;">
-						<strong>Values: </strong>
-						<label id="outputMatureValues">-</label>
-					</li>
-				</ul>
+					<strong>Mature</strong>
+					<ul>
+						<li>
+							<strong>Avg: </strong>
+							<label id="outputMature">-</label>
+						</li>
+						<li style="display:none;">
+							<strong>Values: </strong>
+							<label id="outputMatureValues">-</label>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 
