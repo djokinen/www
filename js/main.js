@@ -1,30 +1,27 @@
 ﻿var _initCalculator = function () {
 	$("#button").on('click', function (e) {
 		e.preventDefault();
-		_calculate();
-		// _calculateAverage($("#inputRange").val().trim());
+		_calculateAverage($("#inputRange").val().trim());
 	});
 
 	$("#switchAll").on('change input', function (e) {
-		_calculate();
-		//if ($(this).is(':checked')) {
-		//	$("#inputRange").prop("disabled", true);
-		//	$("#badgeRange").attr("data-badge", '-');
-		//	_calculateAverage(500);
-		//}
-		//else {
-		//	$("#inputRange").prop("disabled", false);
-		//	var b = $("#inputRange").val().trim();
-		//	$("#badgeRange").attr("data-badge", b);
-		//	_calculateAverage(b);
-		//}
+		if ($(this).is(':checked')) {
+			$("#inputRange").prop("disabled", true);
+			$("#badgeRange").attr("data-badge", '-');
+			_calculateAverage(500);
+		}
+		else {
+			$("#inputRange").prop("disabled", false);
+			var b = $("#inputRange").val().trim();
+			$("#badgeRange").attr("data-badge", b);
+			_calculateAverage(b);
+		}
 	});
 
 	$("#inputRange").on("change input", function () {
-		_calculate();
-		//var b = $("#inputRange").val().trim();
-		//$("#badgeRange").attr("data-badge", b);
-		//_calculateAverage(b);
+		var b = $("#inputRange").val().trim();
+		$("#badgeRange").attr("data-badge", b);
+		_calculateAverage(b);
 	});
 
 	$(':reset').click(function () {
@@ -35,21 +32,6 @@
 		$('#inputRange').val(6);
 	});
 };
-
-
-var _calculate = function () {
-	if ($("#switchAll").is(':checked')) {
-		$("#inputRange").prop("disabled", true);
-		$("#badgeRange").attr("data-badge", '-');
-		_calculateAverage(500);
-	}
-	else {
-		$("#inputRange").prop("disabled", false);
-		var b = $("#inputRange").val().trim();
-		$("#badgeRange").attr("data-badge", b);
-		_calculateAverage(b);
-	}
-}
 
 var _calculateAverage = function (topN) {
 	var grade;
