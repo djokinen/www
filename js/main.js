@@ -1,36 +1,52 @@
 ﻿var _initCalculator = function () {
-	$("#button").on('click', function (e) {
-		e.preventDefault();
-		_calculateAverage($("#inputRange").val().trim());
-	});
 
-	$("#switchAll").on('change input', function (e) {
-		if ($(this).is(':checked')) {
-			$("#inputRange").prop("disabled", true);
-			$("#badgeRange").attr("data-badge", '-');
-			_calculateAverage(500);
+	// on clicking the calculate button
+	$("#button").on('click',
+		function (e) {
+			e.preventDefault();
+			_doCmd();
 		}
-		else {
+	);
+
+	// on override 'count of values' OR adjustment of 'count of values' slider
+	$("#switchAll,#inputRange").on('change input',
+		function (e) {
+			_doCmd();
+		}
+	);
+
+	// on clicking the reset button
+	$(':reset').click(
+		function () {
+			$('ul.prerequisites').empty();
+			$('#outputTopSix').text("-");
+			$('#outputMature').text("-");
+			$('#inputRange').val(6);
 			$("#inputRange").prop("disabled", false);
-			var b = $("#inputRange").val().trim();
-			$("#badgeRange").attr("data-badge", b);
-			_calculateAverage(b);
+
+			$('#switchAll').attr('checked', false);
+			$('#switchAllLabel').removeClass('is-checked');
+			$('#badgeRange').attr("data-badge", 6);
+			$("#badgeRange").removeClass("disable");
 		}
-	});
+	);
+};
 
-	$("#inputRange").on("change input", function () {
-		var b = $("#inputRange").val().trim();
-		$("#badgeRange").attr("data-badge", b);
-		_calculateAverage(b);
-	});
-
-	$(':reset').click(function () {
-		$('ul.prerequisites').empty();
-		$('#outputTopSix').text("-");
-		$('#outputMature').text("-");
-		$('#badgeRange').attr("data-badge", 6);
-		$('#inputRange').val(6);
-	});
+var _doCmd = function () {
+	var count;
+	if ($("#switchAll").is(':checked')) {
+		$("#inputRange").prop("disabled", true);
+		$("#badgeRange").addClass("disable");
+		$("#badgeRange").attr("data-badge", '-');
+		count = -1;
+	}
+	else {
+		$("#inputRange").prop("disabled", false);
+		$("#badgeRange").removeClass("disable");
+		count = $("#inputRange").val().trim();
+		$("#badgeRange").attr("data-badge", count);
+	}
+	_calculateAverage(count);
 };
 
 var _calculateAverage = function (topN) {
@@ -75,7 +91,8 @@ var _calculateAverage = function (topN) {
 	// var inputRange = $("#inputRange").val().trim();
 	// only use the first 6 grades to get the avg
 	// var count = gradeList.length > 6 ? 6 : gradeList.length;
-	var count = gradeList.length > topN ? topN : gradeList.length;
+	topN = topN <= 0 ? gradeList.length : topN; 
+	var count = (gradeList.length > topN) ? topN : gradeList.length;
 	for (i = 0; i < count; i++) {
 		total += gradeList[i].value;
 	}

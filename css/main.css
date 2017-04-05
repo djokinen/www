@@ -14,9 +14,18 @@ label {
 	font-size: 16px;
 }
 
+.disable {
+	text-decoration: line-through;
+	opacity: .5;
+}
+
 .mdl-card__title {
 	color: #FFD740;
 	/* padding-bottom: 0px; */
+}
+
+.mdl-textfield {
+	width: 100%;
 }
 
 .mdl-card {
