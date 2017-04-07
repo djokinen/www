@@ -2,54 +2,28 @@ $(function () {
 
 	// HELP: https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api
 
-	console.log("begin");
-
 	var surl = "http://localhost:60526/api/GlossaryMessageViews?ids=x868";
 
-	$.ajax({
-		dataType: "json",
-		url: surl,
-		data: function (result) { console.log("data"); },
-		success: function (result) { console.log("ajax"); }
-	});
-
-	$.getJSON(surl, function (data) {
-		console.log("success");
+	var jqxhr = $.getJSON(surl, function (data) {
+		console.log("getJson");
 		var items = [];
 		$.each(data, function (key, val) {
-			items.push("<li id='" + key + "'>" + val + "</li>");
+			console.log("Item #: " + key +
+				"\nID: " + val.Id +
+				"\nDesc: " + val.Description +
+				"\nText: " + val.Text +
+				"\nID: " + val.Id + "\n\n");
+			items.push("<li id='" + key + "'>" + val.Id + "</li>");
 		});
 
 		$("<ul/>", {
 			"class": "my-new-list",
 			html: items.join("")
 		}).appendTo("body");
-	});
 
-
-	// var jqxhr = $.getJSON("data.json", function (json) {
-	var jqxhr = $.getJSON(surl, function (json) {
-
-		console.log("start getJson");
-		//console.log("json: " + json);
-		//console.log("json[0]: " + json[0].Id);
-		//console.log("json[0]: " + json[0].GlossaryMessageTypeName);
-		//console.log("json[0]: " + json[0].GlossaryMessageTypeCategoryName);
-		//console.log("json[0]: " + json[0].Description);
-		//console.log("json[0]: " + json[0].Text);
-		// _standings(json.qsbl.standings);
-		// _schedule(json.qsbl.schedule);
-		// _schedule(json);
-	})
-	.done(function (json) {
-		console.log("done");
-	})
-	.fail(function (json) {
-		console.log("fail");
-	})
-	.always(function (json) {
-		console.log("always");
-	});
+	}).done(function (json) { console.log("done"); })
+	.fail(function (json) { console.log("fail"); })
+	.always(function (json) { console.log("always"); });
 });
 
 function callback(retdata) {
