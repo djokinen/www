@@ -1,8 +1,11 @@
 $(function () {
+	_getMessages("x868,x761");
+});
 
-	// HELP: https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api
+// HELP: https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api
+var _getMessages = function (ids) {
 
-	var surl = "http://localhost:60526/api/GlossaryMessageViews?ids=x868";
+	var surl = "http://localhost:60526/api/GlossaryMessageViews?ids=" + ids;
 
 	var jqxhr = $.getJSON(surl, function (data) {
 		console.log("getJson");
@@ -19,27 +22,12 @@ $(function () {
 		$("<ul/>", {
 			"class": "my-new-list",
 			html: items.join("")
-		}).appendTo("body");
+		}).appendTo("#test");
 
 	}).done(function (json) { console.log("done"); })
 	.fail(function (json) { console.log("fail"); })
 	.always(function (json) { console.log("always"); });
-});
-
-function callback(retdata) {
-	console.log("callback: " + retdata);
-}
-
-function _standings(standings) {
-	var items = [];
-	$.each(standings, function (key, val) {
-		items.push('<tr><td>' + key + '</td><td>' + val.w + '</td><td>' + val.l + '</td><td>' + val.t + '</td><td>' + ((val.w * 2) + (val.t)) + '</td></tr>');
-	});
-
-	$('<tbody/>', {
-		html: items.join('')
-	}).appendTo('#standings');
-}
+};
 
 function _schedule(schedule) {
 	var items = [];
