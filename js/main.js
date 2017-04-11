@@ -1,4 +1,6 @@
-﻿var _initCalculator = function () {
+﻿/**** START CALCULATOR ****/
+
+var _initCalculator = function () {
 
 	// on clicking the calculate button
 	$("#button").on('click',
@@ -91,7 +93,7 @@ var _calculateAverage = function (topN) {
 	// var inputRange = $("#inputRange").val().trim();
 	// only use the first 6 grades to get the avg
 	// var count = gradeList.length > 6 ? 6 : gradeList.length;
-	topN = topN <= 0 ? gradeList.length : topN; 
+	topN = topN <= 0 ? gradeList.length : topN;
 	var count = (gradeList.length > topN) ? topN : gradeList.length;
 	for (i = 0; i < count; i++) {
 		total += gradeList[i].value;
@@ -180,6 +182,10 @@ var _calculateAverage = function (topN) {
 	});
 };
 
+/**** END CALCULATOR ****/
+
+/**** START GLOSSARY MESSAGES ****/
+
 var _initGlossaryMsg = function (topN) {
 
 	$('#search').on('keyup click', function () {
@@ -199,6 +205,7 @@ var _initGlossaryMsg = function (topN) {
 	});
 	_getOccurrences(topN);
 };
+
 
 var _getOccurrences = function (topN) {
 	var count = 0;
@@ -254,11 +261,50 @@ var _getOccurrences = function (topN) {
 
 	// for each found code
 	var result = "";
+	var codes = [];
 	var maxCount = parseFloat(occurences[0].count);
 	for (var occurence in occurences) {
 		// output to page
+		codes.push(occurences[occurence].code);
 		result += occurences[occurence].code + '(<em>' + (occurences[occurence].count / totalCount * 100).toFixed(0) + '%</em>), ';
 	}
+
+	_getMessagesByCodes(codes);
+
 	// trim trailing comma
 	$('#results').html(result.trim().replace(/(^,)|(,$)/g, ""));
 };
+
+// HELP: https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api
+var _getMessagesByCodes = function (codes) {
+
+	$('#messages').empty();
+
+	var surl = "http://localhost:60526/api/GlossaryMessageViews?ids=" + codes.join();
+
+	var jqxhr = $.getJSON(surl, function (data) {
+		// console.log("getJson");
+		var items = [];
+		$.each(data, function (key, val) {
+			/*
+			console.log("Item #: " + key +
+				"\tID: " + val.Id +
+				"\tDesc: " + val.Description +
+				"\tText: " + val.Text +
+				"\tID: " + val.Id + "\n\n");
+			*/
+
+			items.push("<div><h4 id='" + key + "'>" + val.Id + "&nbsp;<em class=\"subtitle\">" + val.Description + "</em></h4><p>" + val.Text + "</p></div>");
+		});
+
+		$("<div/>", {
+			/* "class": "messages", */
+			html: items.join("")
+		}).appendTo("#messages");
+
+	}).done(function (json) { /* console.log("done"); */ })
+	.fail(function (json) { /* console.log("fail"); */ })
+	.always(function (json) { /* console.log("always"); */ });
+};
+
+/**** START GLOSSARY MESSAGES ****/
