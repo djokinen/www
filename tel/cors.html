@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8" />
+
+	<script src="//code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+	<script>
+		// TODO: Replace with the URL of your WebService app
+		// var serviceUrl = 'http://mywebservice/api/test';
+		var serviceUrl = 'http://localhost:60526/api/GlossaryMessageViews?ids=x868';
+
+		function sendRequest() {
+			var method = $('#method').val();
+
+			$.ajax({
+				type: method,
+				url: serviceUrl,
+				error: function (jqXHR, textStatus, errorThrown) {
+					$('#value1').text(jqXHR.responseText || textStatus);
+				}
+			}).done(function (data) {
+				$('#value1').text(data);
+			});
+		}
+
+	</script>
+</head>
+<body>
+
+	<div>
+		<select id="method">
+			<option value="get">GET</option>
+			<option value="post">POST</option>
+			<option value="put">PUT</option>
+		</select>
+		<input type="button" value="Try it" onclick="sendRequest()" />
+		<span id='value1'>(Result)</span>
+	</div>
+
+</body>
+</html>
